@@ -2,9 +2,9 @@
 
 @main("Welcome to Play") {
 
-    <div ng-controller="LocationController as location">
-        <h1>{{location.location.name}}</h1>
-        {{location.location.foodStyle}}
+    <div ng-controller="LocationController">
+        <ul>
+            <li ng-repeat="location in locations">{{location.name}}, {{location.foodStyle}}</li>
+         </ul>
     </div>
-
 }
