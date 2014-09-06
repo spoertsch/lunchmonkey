@@ -2,6 +2,9 @@
 
 @main("Welcome to Play") {
 
-    @play20.welcome(message)
+    <div ng-controller="LocationController as location">
+        <h1>{{location.location.name}}</h1>
+        {{location.location.foodStyle}}
+    </div>
 
 }
