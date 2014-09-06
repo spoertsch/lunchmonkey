@@ -1,10 +1,23 @@
 @(message: String)
 
 @main("Welcome to Play") {
-    <h1>Lunchmonkey</h1>
+
+<div class="page-header">
+    <h1>Lunchmonkey <small>Meat is meat, learn to eat!</small></h1>
+</div>
     <div ng-controller="LocationController">
-        <ul>
-            <li ng-repeat="location in locations">{{location.name}}, {{location.foodStyle}}</li>
-         </ul>
+        <dl class="dl-horizontal" ng-repeat="location in locations">
+            <dt>{{location.name}}</dt>
+            <dd><span class="label label-default">{{location.foodStyle}}</span></dd>
+        </dl>
+
+        <div id="random" class="alert alert-success" role="alert" style="display: none">
+            {{random.name}} <span class="label label-default">{{random.foodStyle}}
+        </div>
+        
+        <button type="button" class="btn btn-default" ng-click="randomButton()">Random</button>
+
     </div>
+
+
 }

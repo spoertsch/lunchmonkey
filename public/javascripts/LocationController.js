@@ -11,6 +11,19 @@
             error(function(data, status, headers, config) {
                 console.log("error")
             });
+
+        $scope.randomButton = function() {
+            $http({method: 'GET', url: '/locations/random'}).
+                success(function(data, status, headers, config) {
+                    console.log("success: " + data)
+                    $scope.random = data
+                    document.getElementById("random").style.display = 'block'
+                }).
+                error(function(data, status, headers, config) {
+                    console.log("error")
+                    document.getElementById("random").style.display = 'none'
+                });
+        }
     });
 
 })();
