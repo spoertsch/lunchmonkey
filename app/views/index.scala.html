@@ -3,21 +3,23 @@
 @main("Welcome to Play") {
 
 <div class="page-header">
-    <h1>Lunchmonkey <small>Meat is meat, learn to eat!</small></h1>
+    <h1>Lunchmonkey
+        <small>Meat is meat, learn to eat!</small>
+    </h1>
 </div>
-    <div ng-controller="LocationController">
-        <dl class="dl-horizontal" ng-repeat="location in locations">
-            <dt>{{location.name}}</dt>
-            <dd><span class="label label-default">{{location.foodStyle}}</span></dd>
-        </dl>
+<div ng-controller="LocationController">
+    <dl class="dl-horizontal" ng-repeat="location in locations">
+        <dt>{{location.name}}</dt>
+        <dd><span class="label label-default">{{location.foodStyle}}</span></dd>
+    </dl>
 
-        <div id="random" class="alert alert-success" role="alert" style="display: none">
-            {{random.name}} <span class="label label-default">{{random.foodStyle}}
-        </div>
-        
-        <button type="button" class="btn btn-default" ng-click="randomButton()">Random</button>
-
+    <div id="random" class="alert alert-success" role="alert" style="display: none">
+        {{random.name}} <span class="label label-default">{{random.foodStyle}}
     </div>
+
+    <button type="button" class="btn btn-default" ng-click="randomButton()">Random</button>
+
+</div>
 
 
 }
