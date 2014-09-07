@@ -8,17 +8,23 @@
     </h1>
 </div>
 <div ng-controller="LocationController">
-    <dl class="dl-horizontal" ng-repeat="location in locations">
-        <dt>{{location.name}}</dt>
-        <dd><span class="label label-default">{{location.foodStyle}}</span></dd>
-    </dl>
+    <button type="button" class="btn btn-default" ng-click="randomButton()">Random</button>
 
-    <div id="random" class="alert alert-success" role="alert" style="display: none">
+    <div id="random" class="alert alert-success" role="alert" style="display: none; margin-top: 20px">
         {{random.name}} <span class="label label-default">{{random.foodStyle}}
     </div>
 
-    <button type="button" class="btn btn-default" ng-click="randomButton()">Random</button>
-
+    <div class="panel panel-default" style="margin-top: 20px">
+        <div class="panel-heading">
+            <h3 class="panel-title">Location list</h3>
+        </div>
+        <div class="panel-body">
+            <dl class="dl-horizontal" ng-repeat="location in locations">
+                <dt>{{location.name}}</dt>
+                <dd><span class="label label-default">{{location.foodStyle}}</span></dd>
+            </dl>
+        </div>
+    </div>
 </div>
 
 

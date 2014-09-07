@@ -12,18 +12,18 @@ import play.api.test.{FakeRequest, WithApplication}
 class LocationControllerSpec extends Specification {
   "Application" should {
 
-    "send 404 on a bad request" in new WithApplication{
+    "send 404 on a bad request" in new WithApplication {
       route(FakeRequest(GET, "/boum")) must beNone
     }
 
-    "return a list of locations" in new WithApplication{
+    "return a list of locations" in new WithApplication {
       val locationList = route(FakeRequest(GET, "/locations")).get
 
       status(locationList) must equalTo(OK)
       contentType(locationList) must beSome.which(_ == "application/json")
     }
 
-    "return a random location" in new WithApplication{
+    "return a random location" in new WithApplication {
       val location = route(FakeRequest(GET, "/locations/random")).get
 
       status(location) must equalTo(OK)
