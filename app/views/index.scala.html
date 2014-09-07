@@ -19,7 +19,7 @@
             <h3 class="panel-title">Location list</h3>
         </div>
         <div class="panel-body" id="column3">
-            <dl class="dl-horizontal" ng-repeat="location in locations">
+            <dl class="dl-horizontal" ng-repeat="location in locations" id="{{location.name}}">
                 <dt>{{location.name}}</dt>
                 <dd><span class="label label-default">{{location.foodStyle}}</span></dd>
             </dl>
