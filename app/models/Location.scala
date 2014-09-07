@@ -19,6 +19,16 @@ object Location {
     Location("DaSalvo", "italian"),
     Location("Vapiano", "italian"),
     Location("Zum Gutenberg", "greek"),
-    Location("Red Chili", "asian"))
+    Location("Red Chili", "asian"),
+    Location("Awake", "various"),
+    Location("Extrablatt", "various"),
+    Location("Proviantmagazin", "various"),
+    Location("Rewe", "food store"),
+    Location("GBC Döner", "döner"),
+    Location("Subway", "sandwich"),
+    Location("Metzger GBC", "butcher"),
+    Location("Currywurst GBC", "imbiss"),
+    Location("Imbiss", "imbiss"),
+    Location("Pizzeria Bretzenheim", "italian"))
 
 }
