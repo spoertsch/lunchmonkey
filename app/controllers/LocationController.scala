@@ -11,7 +11,7 @@ import scala.util.Random
  */
 object LocationController extends Controller {
   def list = Action {
-    Ok(Json.toJson(Location.defaultLocations))
+    Ok(Json.toJson(Location.defaultLocations.sortBy(_.name)))
   }
 
   def random = Action {
