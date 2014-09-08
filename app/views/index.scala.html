@@ -20,7 +20,10 @@
         </div>
         <div class="panel-body" id="column3">
             <dl class="dl-horizontal" ng-repeat="location in locations" id="{{location.name}}">
-                <dt>{{location.name}}</dt>
+                <dt>
+                    <a ng-if="location.url" href="{{location.url}}" target="_blank">{{location.name}}</a>
+                    <span ng-if="!location.url">{{location.name}}</span>
+                </dt>
                 <dd><span class="label label-default">{{location.foodStyle}}</span></dd>
             </dl>
         </div>
