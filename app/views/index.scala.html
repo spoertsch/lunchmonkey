@@ -11,7 +11,9 @@
     <button type="button" class="btn btn-default" ng-click="randomButton()">Random</button>
 
     <div id="random" class="alert alert-success" role="alert" style="display: none; margin-top: 20px">
-        {{random.name}} <span class="label label-default">{{random.foodStyle}}
+        <a ng-if="random.url" href="{{random.url}}" target="_blank">{{random.name}}</a>
+        <span ng-if="!random.url">{{random.name}}</span>
+        <span class="label label-default">{{random.foodStyle}}
     </div>
 
     <div class="panel panel-default" style="margin-top: 20px">
