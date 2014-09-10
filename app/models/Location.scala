@@ -33,6 +33,8 @@ object Location {
     Location("Gasthof Grün", "various", "http://www.gasthofgruen.de/mittagstisch/"),
     Location("Baron", "various", "http://www.baron-mainz.de/restaurant/speisen/mittagstisch/"),
     Location("Eisgrub", "german", ""),
-    Location("Pizzeria Bretzenheim", "italian", ""))
+    Location("Pizzeria Bretzenheim", "italian", ""),
+    Location("Bullys Burger", "burger", "http://www.bullys-burger.de/")
+  )
 
 }
