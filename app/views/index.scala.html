@@ -1,6 +1,6 @@
 @(message: String)
 
-@main("Welcome to Play") {
+@main("Welcome to Lunchmonkey") {
 
 <div class="page-header">
     <h1>Lunchmonkey
@@ -17,16 +17,47 @@
     </div>
 
     <div class="panel panel-default" style="margin-top: 20px">
+
         <div class="panel-heading">
-            <h3 class="panel-title">Location list</h3>
+            <form class="form-inline" role="form">
+                <div class="form-group">
+                    <h3 class="panel-title">Location list</h3>
+                </div>
+                <div class="form-group" style="margin-left: 30px">
+                    <div class="input-group">
+                        <span class="input-group-addon">?</span>
+                        <input type="" class="form-control" placeholder="Search" ng-model="search">
+                    </div>
+                </div>
+                <div class="form-group" style="margin-left: 30px">
+                    <div class="input-group">
+                        <span class="input-group-addon">order by</span>
+                        <select class="form-control" ng-model="predicate">
+                            <option value="name">name</option>
+                            <option value="foodStyle">type</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group" style="margin-left: 30px">
+                    <button type="button" class="btn btn-default" ng-click="sortButton()">
+                        <span class="glyphicon glyphicon glyphicon-sort"></span>
+                    </button>
+                </div>
+            </form>
         </div>
+
         <div class="panel-body" id="column3">
-            <dl class="dl-horizontal" ng-repeat="location in locations" id="{{location.name}}">
+            <dl class="dl-horizontal"
+                ng-repeat="location in locations | filter:search | orderBy:predicate:reverse as filteredLocations"
+                id="{{location.name}}">
                 <dt>
                     <a ng-if="location.url" href="{{location.url}}" target="_blank">{{location.name}}</a>
                     <span ng-if="!location.url">{{location.name}}</span>
                 </dt>
                 <dd><span class="label label-default">{{location.foodStyle}}</span></dd>
+            </dl>
+            <dl class="dl-horizontal" ng-if="filteredLocations.length == 0">
+                <dt>no results found ...</dt>
             </dl>
         </div>
     </div>
