@@ -10,9 +10,10 @@
 <div ng-controller="LocationController">
     <button type="button" class="btn btn-default" ng-click="randomButton()">Random</button>
 
-    <div id="random" class="alert alert-success" role="alert" style="display: block; margin-top: 20px"
-         ng-show="random != null">
-        {{random.name}} <span class="label label-default">{{random.foodStyle}}
+    <div id="random" class="alert alert-success" role="alert" style="display: none; margin-top: 20px">
+        <a ng-if="random.url" href="{{random.url}}" target="_blank">{{random.name}}</a>
+        <span ng-if="!random.url">{{random.name}}</span>
+        <span class="label label-default">{{random.foodStyle}}
     </div>
 
     <div class="panel panel-default" style="margin-top: 20px">
@@ -49,7 +50,10 @@
             <dl class="dl-horizontal"
                 ng-repeat="location in locations | filter:search | orderBy:predicate:reverse as filteredLocations"
                 id="{{location.name}}">
-                <dt>{{location.name}}</dt>
+                <dt>
+                    <a ng-if="location.url" href="{{location.url}}" target="_blank">{{location.name}}</a>
+                    <span ng-if="!location.url">{{location.name}}</span>
+                </dt>
                 <dd><span class="label label-default">{{location.foodStyle}}</span></dd>
             </dl>
             <dl class="dl-horizontal" ng-if="filteredLocations.length == 0">
