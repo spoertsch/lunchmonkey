@@ -10,10 +10,10 @@
 <div ng-controller="LocationController">
     <button type="button" class="btn btn-default" ng-click="randomButton()">Random</button>
 
-    <div id="random" class="alert alert-success" role="alert" style="display: none; margin-top: 20px">
+    <div id="random" class="alert alert-success" role="alert" style="display: block; margin-top: 20px" ng-show="random != null">
         <a ng-if="random.url" href="{{random.url}}" target="_blank">{{random.name}}</a>
         <span ng-if="!random.url">{{random.name}}</span>
-        <span class="label label-default">{{random.foodStyle}}
+        <span class="label label-default">{{random.foodStyle}}</span>
     </div>
 
     <div class="panel panel-default" style="margin-top: 20px">
