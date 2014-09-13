@@ -5,14 +5,14 @@ import play.api.libs.json.Json
 /**
  * Created by jst on 04.09.14.
  */
-case class Location(name: String, foodStyle: String, url: String) {
+case class Location(name: String, foodStyle: String, url: String, active: Boolean = true) {
 
 }
 
 object Location {
 
-  implicit val taskWrites = Json.writes[Location]
-  implicit val taskReads = Json.reads[Location]
+  // Generates Writes and Reads for Feed and Location thanks to Json Macros
+  implicit val userFormat = Json.format[Location]
 
   val defaultLocations = List(Location("MoschMosch", "asian", "http://moschmosch.com/sites/default/files/mosch_herbst_goetheplatz_kw33-14_0.pdf"),
     Location("Thai Express", "asian", ""),
