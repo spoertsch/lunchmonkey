@@ -46,6 +46,7 @@ object Location {
     Location(BSONObjectID.generate, "Aposto Mainz", "italian", "https://www.aposto.eu/mainz/restaurant/mittagstisch"),
     Location(BSONObjectID.generate, "Maredo", "steak, various", "http://www.maredo.de/essen-trinken/mittagstisch.html"),
     Location(BSONObjectID.generate, "Cubo Negro", "burger, various", "http://www.cubonegro.de/restaurant.php"),
+    Location(BSONObjectID.generate, "Da Luigi", "italian", "https://de-de.facebook.com/pages/Pizzeria-da-Luigi/265400060194481"),
     Location(BSONObjectID.generate, "Bullys Burger", "burger", "http://www.bullys-burger.de/")
   )
 
