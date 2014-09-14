@@ -8,7 +8,7 @@ import play.api.libs.ws._
 
 object Global extends play.api.GlobalSettings {
 
-  var host = "http://localhost:9000/"
+  var host = "http://localhost:9000"
 
   override def onStart(app: play.api.Application) {
     WS.url(host + "/locations").get().map {
