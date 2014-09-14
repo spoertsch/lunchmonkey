@@ -8,9 +8,16 @@
     </h1>
 </div>
 <div ng-controller="LocationController">
-    <button type="button" class="btn btn-default" ng-click="randomButton()">Random</button>
+    <button type="button" class="btn btn-primary" ng-click="randomButton()">Random</button>
 
-    <div id="random" class="alert alert-success" role="alert" style="display: block; margin-top: 20px" ng-show="random != null">
+    <!-- Button trigger create dialog -->
+    <button class="btn btn-primary" data-toggle="modal" data-target="#locationEditDialog"
+            ng-click="openCreateLocationDialog()">
+        Create Location
+    </button>
+
+    <div id="random" class="alert alert-success" role="alert" style="display: block; margin-top: 20px"
+         ng-show="random != null">
         <a ng-if="random.url" href="{{random.url}}" target="_blank">{{random.name}}</a>
         <span ng-if="!random.url">{{random.name}}</span>
         <span class="label label-default">{{random.foodStyle}}</span>
@@ -25,7 +32,7 @@
                 </div>
                 <div class="form-group" style="margin-left: 30px">
                     <div class="input-group">
-                        <span class="input-group-addon">?</span>
+                        <span class="input-group-addon glyphicon glyphicon-search"></span>
                         <input type="" class="form-control" placeholder="Search" ng-model="search">
                     </div>
                 </div>
@@ -53,6 +60,8 @@
                 <dt>
                     <a ng-if="location.url" href="{{location.url}}" target="_blank">{{location.name}}</a>
                     <span ng-if="!location.url">{{location.name}}</span>
+                    &nbsp;<span class="glyphicon glyphicon-pencil" ng-if="location._id" ng-click="openUpdateLocationDialog(location)" data-toggle="modal" data-target="#locationEditDialog"></span>
+                    &nbsp;<span class="glyphicon glyphicon-remove" ng-if="location._id" ng-click="deleteLocation(location)"></span>&nbsp;
                 </dt>
                 <dd><span class="label label-default">{{location.foodStyle}}</span></dd>
             </dl>
@@ -61,6 +70,57 @@
             </dl>
         </div>
     </div>
+
+    <!-- Edit / Create Location Dialog -->
+    <div class="modal fade" id="locationEditDialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span
+                            aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">{{editLocationPopupTitle}}</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                    <table border="0">
+                        <tr>
+                            <td>
+                                Name
+                            </td>
+                            <td>
+                                <input ng-model="selectedLocation.name"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Food Style
+                            </td>
+                            <td>
+                                <input ng-model="selectedLocation.foodStyle"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                URL
+                            </td>
+                            <td>
+                                <input ng-model="selectedLocation.url">
+                            </td>
+                        </tr>
+                    </table>
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" ng-if="isCreate" ng-click="createLocation()">Create Location</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" ng-if="!isCreate" ng-click="saveLocation()">Save Location</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
 </div>
 
 
