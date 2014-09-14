@@ -1,127 +1,189 @@
 @(message: String)
 
 @main("Welcome to Lunchmonkey") {
-
-<div class="page-header">
-    <h1>Lunchmonkey
-        <small>Meat is meat, learn to eat!</small>
-    </h1>
-</div>
-<div ng-controller="LocationController">
-    <button type="button" class="btn btn-primary" ng-click="randomButton()">Random</button>
-
-    <!-- Button trigger create dialog -->
-    <button class="btn btn-primary" data-toggle="modal" data-target="#locationEditDialog"
-            ng-click="openCreateLocationDialog()">
-        Create Location
-    </button>
-
-    <div id="random" class="alert alert-success" role="alert" style="display: block; margin-top: 20px"
-         ng-show="random != null">
-        <a ng-if="random.url" href="{{random.url}}" target="_blank">{{random.name}}</a>
-        <span ng-if="!random.url">{{random.name}}</span>
-        <span class="label label-default">{{random.foodStyle}}</span>
-    </div>
-
-    <div class="panel panel-default" style="margin-top: 20px">
-
-        <div class="panel-heading">
-            <form class="form-inline" role="form">
-                <div class="form-group">
-                    <h3 class="panel-title">Location list</h3>
-                </div>
-                <div class="form-group" style="margin-left: 30px">
-                    <div class="input-group">
-                        <span class="input-group-addon glyphicon glyphicon-search"></span>
-                        <input type="" class="form-control" placeholder="Search" ng-model="search">
-                    </div>
-                </div>
-                <div class="form-group" style="margin-left: 30px">
-                    <div class="input-group">
-                        <span class="input-group-addon">order by</span>
-                        <select class="form-control" ng-model="predicate">
-                            <option value="name">name</option>
-                            <option value="foodStyle">type</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group" style="margin-left: 30px">
-                    <button type="button" class="btn btn-default" ng-click="sortButton()">
-                        <span class="glyphicon glyphicon glyphicon-sort"></span>
-                    </button>
-                </div>
-            </form>
+<div id="wrap">
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Lunchmonkey</a>
         </div>
 
-        <div class="panel-body" id="column3">
-            <dl class="dl-horizontal"
-                ng-repeat="location in locations | filter:search | orderBy:predicate:reverse as filteredLocations"
-                id="{{location.name}}">
-                <dt>
-                    <a ng-if="location.url" href="{{location.url}}" target="_blank">{{location.name}}</a>
-                    <span ng-if="!location.url">{{location.name}}</span>
-                    &nbsp;<span class="glyphicon glyphicon-pencil" ng-if="location._id" ng-click="openUpdateLocationDialog(location)" data-toggle="modal" data-target="#locationEditDialog"></span>
-                    &nbsp;<span class="glyphicon glyphicon-remove" ng-if="location._id" ng-click="deleteLocation(location)"></span>&nbsp;
-                </dt>
-                <dd><span class="label label-default">{{location.foodStyle}}</span></dd>
-            </dl>
-            <dl class="dl-horizontal" ng-if="filteredLocations.length == 0">
-                <dt>no results found ...</dt>
-            </dl>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Home</a></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+    <div class="container">
+        <div class="page-header">
+            <h1>Lunchmonkey
+                <small>Meat is meat, learn to eat!</small>
+            </h1>
         </div>
-    </div>
+        <div ng-controller="LocationController">
+            <button type="button" class="btn btn-primary" ng-click="randomButton()">Random</button>
 
-    <!-- Edit / Create Location Dialog -->
-    <div class="modal fade" id="locationEditDialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"><span
-                            aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title">{{editLocationPopupTitle}}</h4>
+            <!-- Button trigger create dialog -->
+            <button class="btn btn-primary" data-toggle="modal" data-target="#locationEditDialog"
+                    ng-click="openCreateLocationDialog()">
+                Create Location
+            </button>
+
+            <div id="random" class="alert alert-success" role="alert" style="display: block; margin-top: 20px"
+                 ng-show="random != null">
+                <a ng-if="random.url" href="{{random.url}}" target="_blank">{{random.name}}</a>
+                <span ng-if="!random.url">{{random.name}}</span>
+                <span class="label label-default">{{random.foodStyle}}</span>
+            </div>
+
+            <div class="panel panel-default" style="margin-top: 20px">
+
+                <div class="panel-heading">
+                    <form class="form-inline" role="form">
+                        <div class="form-group">
+                            <h3 class="panel-title">Location list</h3>
+                        </div>
+                        <div class="form-group" style="margin-left: 30px">
+                            <div class="input-group">
+                                <span class="input-group-addon glyphicon glyphicon-search"></span>
+                                <input type="" class="form-control" placeholder="Search" ng-model="search">
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-left: 30px">
+                            <div class="input-group">
+                                <span class="input-group-addon">order by</span>
+                                <select class="form-control" ng-model="predicate">
+                                    <option value="name">name</option>
+                                    <option value="foodStyle">type</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-left: 30px">
+                            <button type="button" class="btn btn-default" ng-click="sortButton()">
+                                <span class="glyphicon glyphicon glyphicon-sort"></span>
+                            </button>
+                        </div>
+                    </form>
                 </div>
-                <div class="modal-body">
-                    <p>
-                    <table border="0">
-                        <tr>
-                            <td>
-                                Name
-                            </td>
-                            <td>
-                                <input ng-model="selectedLocation.name"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Food Style
-                            </td>
-                            <td>
-                                <input ng-model="selectedLocation.foodStyle"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                URL
-                            </td>
-                            <td>
-                                <input ng-model="selectedLocation.url">
-                            </td>
-                        </tr>
-                    </table>
-                    </p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal" ng-if="isCreate" ng-click="createLocation()">Create Location</button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal" ng-if="!isCreate" ng-click="saveLocation()">Save Location</button>
+
+                <div class="panel-body" id="column3">
+                    <dl class="dl-horizontal"
+                        ng-repeat="location in locations | filter:search | orderBy:predicate:reverse as filteredLocations"
+                        id="{{location.name}}">
+                        <dt>
+                            <a ng-if="location.url" href="{{location.url}}" target="_blank">{{location.name}}</a>
+                            <span ng-if="!location.url">{{location.name}}</span>
+                            &nbsp;<span class="glyphicon glyphicon-pencil" ng-if="location._id"
+                                        ng-click="openUpdateLocationDialog(location)" data-toggle="modal"
+                                        data-target="#locationEditDialog"></span>
+                            &nbsp;<span class="glyphicon glyphicon-remove" ng-if="location._id"
+                                        ng-click="deleteLocation(location)"></span>&nbsp;
+                        </dt>
+                        <dd><span class="label label-default">{{location.foodStyle}}</span></dd>
+                    </dl>
+                    <dl class="dl-horizontal" ng-if="filteredLocations.length == 0">
+                        <dt>no results found ...</dt>
+                    </dl>
                 </div>
             </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
-    <!-- /.modal -->
-</div>
 
+            <!-- Edit / Create Location Dialog -->
+            <div class="modal fade" id="locationEditDialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><span
+                                    aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <h4 class="modal-title">{{editLocationPopupTitle}}</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>
+                            <table border="0">
+                                <tr>
+                                    <td>
+                                        Name
+                                    </td>
+                                    <td>
+                                        <input ng-model="selectedLocation.name"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Food Style
+                                    </td>
+                                    <td>
+                                        <input ng-model="selectedLocation.foodStyle"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        URL
+                                    </td>
+                                    <td>
+                                        <input ng-model="selectedLocation.url">
+                                    </td>
+                                </tr>
+                            </table>
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal" ng-if="isCreate"
+                                    ng-click="createLocation()">Create Location
+                            </button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal" ng-if="!isCreate"
+                                    ng-click="saveLocation()">Save Location
+                            </button>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+            <!-- /.modal -->
+
+            <!-- Edit / Create Location Dialog -->
+            <div class="modal fade" id="feedbackDialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><span
+                                    aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <h4 class="modal-title">Feedback</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>
+                                Feedback :)
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Send Feedback</button>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+            <!-- /.modal -->
+        </div>
+    </div>
+</div>
+<div id="footer">
+    <div class="container">
+        <button class="btn btn-primary" data-toggle="modal" data-target="#feedbackDialog">
+            Feedback
+        </button>
+    </div>
+</div>
 
 }
