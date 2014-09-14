@@ -49,6 +49,12 @@ object LocationController extends Controller {
     )
   }
 
+  /** Action to save a location */
+  def deleteLocation(locationId : String) = Action {
+    LocationDao.remove(locationId)
+    Ok("Location Deleted")
+  }
+
   def random = Action {
     val locations = Location.defaultLocations
     val random = Random.shuffle(locations).head

@@ -7,21 +7,29 @@ var host = 'http://localhost:9000';
 var persistenceServices = angular.module('persistenceServices', []);
 
 persistenceServices.factory('Locations', ['$resource',
-    function($resource){
+    function ($resource) {
         return {
-            getAll: function() {
+            getAll: function () {
                 return $resource(host + '/locations', {}, {
-                    query: {method:'GET', isArray:true}
+                    query: {method: 'GET', isArray: true}
                 });
             },
-            create: function(){
+            create: function () {
                 return $resource(host + '/location', {}, {
-                    execute: {method:'POST'}
+                    execute: {method: 'POST'}
                 });
             },
-            save: function(){
+            save: function () {
                 return $resource(host + '/location', {}, {
-                    execute: {method:'PUT'}
+                    execute: {method: 'PUT'}
+                });
+            },
+            delete: function (id) {
+                return $resource(host + '/location/:locationId', {}, {
+                    execute: {
+                        method: 'DELETE',
+                        params: {locationId: id}
+                    }
                 });
             }
         };

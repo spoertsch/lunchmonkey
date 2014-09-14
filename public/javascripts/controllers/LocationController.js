@@ -46,5 +46,9 @@ locationControllers.controller('LocationController', ['$scope', 'Locations', fun
             Locations.create().execute($scope.selectedLocation)
             $scope.locations.push($scope.selectedLocation)
         }
+
+        $scope.deleteLocation = function(location){
+            Locations.delete(location._id.$oid).execute()
+        }
     }]
 );

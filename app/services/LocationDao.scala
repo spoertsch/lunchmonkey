@@ -47,6 +47,11 @@ object LocationDao {
       .collect[Seq]()
   }
 
+  def remove(id: String): Future[reactivemongo.core.commands.LastError] = {
+    Logger.debug(s"Removing location: [collection=locations, id=$id]")
+    collection.remove(Json.obj("_id" -> BSONObjectID(id)))
+  }
+
   /** The total number of locations */
   def count: Future[Int] = {
     ReactiveMongoPlugin.db.command(Count(collection.name))
