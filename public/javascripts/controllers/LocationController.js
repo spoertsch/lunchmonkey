@@ -32,7 +32,6 @@ locationControllers.controller('LocationController', ['$scope', 'Locations', fun
         }
 
         $scope.openUpdateLocationDialog = function (selectedLocation) {
-            console.log(selectedLocation)
             $scope.selectedLocation = selectedLocation
             $scope.editLocationPopupTitle = "Edit Location"
             $scope.isCreate = false
@@ -49,6 +48,7 @@ locationControllers.controller('LocationController', ['$scope', 'Locations', fun
 
         $scope.deleteLocation = function(location){
             Locations.delete(location._id.$oid).execute()
+            $scope.locations.splice($.inArray(location, $scope.locations),1);
         }
     }]
 );

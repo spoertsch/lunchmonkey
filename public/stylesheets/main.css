@@ -3,3 +3,7 @@ div #column3 {
     -moz-column-count: 3; /* Firefox */
     column-count: 3;
 }
+
+.dl-horizontal dt {
+    width: 200px;
+}

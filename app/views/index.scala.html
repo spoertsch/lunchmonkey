@@ -61,7 +61,7 @@
                     <a ng-if="location.url" href="{{location.url}}" target="_blank">{{location.name}}</a>
                     <span ng-if="!location.url">{{location.name}}</span>
                     &nbsp;<span class="glyphicon glyphicon-pencil" ng-if="location._id" ng-click="openUpdateLocationDialog(location)" data-toggle="modal" data-target="#locationEditDialog"></span>
-                    &nbsp;<span class="glyphicon glyphicon-remove" ng-if="location._id" ng-click="deleteLocation(location)"></span>
+                    &nbsp;<span class="glyphicon glyphicon-remove" ng-if="location._id" ng-click="deleteLocation(location)"></span>&nbsp;
                 </dt>
                 <dd><span class="label label-default">{{location.foodStyle}}</span></dd>
             </dl>
