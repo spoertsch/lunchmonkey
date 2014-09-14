@@ -150,40 +150,52 @@
                 <!-- /.modal-dialog -->
             </div>
             <!-- /.modal -->
-
-            <!-- Edit / Create Location Dialog -->
-            <div class="modal fade" id="feedbackDialog">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal"><span
-                                    aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                            <h4 class="modal-title">Feedback</h4>
-                        </div>
-                        <div class="modal-body">
-                            <p>
-                                Feedback :)
-                            </p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary" data-dismiss="modal">Send Feedback</button>
-                        </div>
-                    </div>
-                    <!-- /.modal-content -->
-                </div>
-                <!-- /.modal-dialog -->
-            </div>
-            <!-- /.modal -->
         </div>
     </div>
 </div>
-<div id="footer">
+<div id="footer" ng-controller="FeedbackController">
     <div class="container">
-        <button class="btn btn-primary" data-toggle="modal" data-target="#feedbackDialog">
+        <button class="btn btn-primary" data-toggle="modal" data-target="#feedbackDialog" ng-click="openFeedbackDialog()">
             Feedback
         </button>
     </div>
+    <!-- Edit / Create Location Dialog -->
+    <div class="modal fade" id="feedbackDialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span
+                            aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">Feedback</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                    <div ng-repeat="feedback in feedbacks" class="panel panel-default">
+                        <div class="panel-heading">{{feedback.username}}</div>
+                        <div class="panel-body">
+                            {{feedback.comment}}
+                        </div>
+                    </div>
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-addon">from</span>
+                        <input type="text" class="form-control" placeholder="Username" ng-model="newFeedback.username">
+                    </div>
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-addon">comment</span>
+                        <input type="text" class="form-control" placeholder="Comment" ng-model="newFeedback.comment" />
+                    </div>
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="createFeedback()">Send Feedback</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
 </div>
 
 }
