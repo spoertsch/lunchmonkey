@@ -26,20 +26,25 @@ locationControllers.controller('LocationController', ['$scope', 'Locations', fun
         }
 
         $scope.openCreateLocationDialog = function () {
-            $scope.selectedLocation = {}
+            $scope.selectedLocation = {name: "", foodStyle: "", url: ""}
             $scope.editLocationPopupTitle = "Create Location"
+            $scope.isCreate = true
         }
 
         $scope.openUpdateLocationDialog = function (selectedLocation) {
             console.log(selectedLocation)
             $scope.selectedLocation = selectedLocation
             $scope.editLocationPopupTitle = "Edit Location"
+            $scope.isCreate = false
         }
 
         $scope.saveLocation = function () {
-            $scope.selectedLocation.active = true
-            Locations.create().execute($scope.selectedLocation);
-            $scope.locations = Locations.getAll().query()
+            Locations.save().execute($scope.selectedLocation)
+        }
+
+        $scope.createLocation = function () {
+            Locations.create().execute($scope.selectedLocation)
+            $scope.locations.push($scope.selectedLocation)
         }
     }]
 );

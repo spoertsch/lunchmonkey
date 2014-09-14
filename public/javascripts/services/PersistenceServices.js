@@ -18,6 +18,11 @@ persistenceServices.factory('Locations', ['$resource',
                 return $resource(host + '/location', {}, {
                     execute: {method:'POST'}
                 });
+            },
+            save: function(){
+                return $resource(host + '/location', {}, {
+                    execute: {method:'PUT'}
+                });
             }
         };
     }

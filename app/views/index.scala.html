@@ -8,10 +8,10 @@
     </h1>
 </div>
 <div ng-controller="LocationController">
-    <button type="button" class="btn btn-default" ng-click="randomButton()">Random</button>
+    <button type="button" class="btn btn-primary" ng-click="randomButton()">Random</button>
 
     <!-- Button trigger create dialog -->
-    <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#locationEditDialog"
+    <button class="btn btn-primary" data-toggle="modal" data-target="#locationEditDialog"
             ng-click="openCreateLocationDialog()">
         Create Location
     </button>
@@ -60,7 +60,7 @@
                 <dt>
                     <a ng-if="location.url" href="{{location.url}}" target="_blank">{{location.name}}</a>
                     <span ng-if="!location.url">{{location.name}}</span>
-                    &nbsp;<span class="glyphicon glyphicon-pencil" ng-click="openUpdateLocationDialog(location)" data-toggle="modal" data-target="#locationEditDialog"></span>
+                    &nbsp;<span class="glyphicon glyphicon-pencil" ng-if="location._id" ng-click="openUpdateLocationDialog(location)" data-toggle="modal" data-target="#locationEditDialog"></span>
                 </dt>
                 <dd><span class="label label-default">{{location.foodStyle}}</span></dd>
             </dl>
@@ -111,7 +111,8 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="saveLocation()">Save</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" ng-if="isCreate" ng-click="createLocation()">Create Location</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" ng-if="!isCreate" ng-click="saveLocation()">Save Location</button>
                 </div>
             </div>
             <!-- /.modal-content -->
