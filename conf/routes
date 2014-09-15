@@ -13,6 +13,7 @@ PUT     /location                   controllers.LocationController.saveLocation
 DELETE  /location/:locationId       controllers.LocationController.deleteLocation(locationId: String)
 GET     /feedbacks                  controllers.FeedbackController.list
 POST    /feedback                   controllers.FeedbackController.createFeedback
+DELETE  /feedback/:feedbackId       controllers.FeedbackController.deleteFeedback(feedbackId: String)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

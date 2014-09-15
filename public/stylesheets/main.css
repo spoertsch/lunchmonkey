@@ -8,38 +8,32 @@ div #column3 {
     width: 200px;
 }
 
-html,
-body {
-    height: 100%;
-    /* The html and body elements cannot have any padding or margin. */
+#feedbackDialog {
+    max-height: 90%;
 }
 
-/* Wrapper for page content to push down footer */
-#wrap {
-    min-height: 100%;
-    height: auto !important;
-    height: 100%;
-    /* Negative indent footer by it's height */
-    margin: 0 auto -60px;
+#feedbackContainer {
+    max-height: 270px;
+    overflow: scroll;
+    padding:2px;
 }
 
-/* Set the fixed height of the footer here */
-#push,
+.paddingTop {
+    padding-top: 20px;
+}
+
 #footer {
     height: 60px;
     padding-top: 10px;
-}
-
-#footer {
+    width: 100%;
     background-color: #f5f5f5;
 }
 
-/* Lastly, apply responsive CSS fixes as necessary */
-@media (max-width: 767px) {
-    #footer {
-        margin-left: -20px;
-        margin-right: -20px;
-        padding-left: 20px;
-        padding-right: 20px;
-    }
+.input-group-addon {
+    width: 120px;
+}
+
+.input-group {
+    width: 100%;
+    margin-bottom: 5px;
 }

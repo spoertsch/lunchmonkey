@@ -8,6 +8,7 @@ import scala.util.Random
 import services.FeedbackDao
 import reactivemongo.bson.BSONObjectID
 import play.api.libs.concurrent.Execution.Implicits._
+import java.util.Date
 
 object FeedbackController extends Controller {
 
@@ -32,7 +33,7 @@ object FeedbackController extends Controller {
    * The feedback form for create feedback. This is separate from the database feedback since the form doesn't have an ID.
    */
   case class FeedbackForm(username: String, comment: String) {
-    def toFeedback: Feedback = Feedback(BSONObjectID.generate, username, comment)
+    def toFeedback: Feedback = Feedback(BSONObjectID.generate, username, comment, new Date())
   }
 
   implicit val feedbackFormFormat = Json.format[FeedbackForm]

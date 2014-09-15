@@ -41,7 +41,7 @@ object FeedbackDao {
    */
   def findAll(): Future[Seq[Feedback]] = {
     collection.find(Json.obj())
-      .sort(Json.obj("username" -> -1))
+      .sort(Json.obj("createdOn" -> -1))
       .cursor[Feedback]
       .collect[Seq]()
   }

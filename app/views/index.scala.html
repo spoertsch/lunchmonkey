@@ -2,27 +2,30 @@
 
 @main("Welcome to Lunchmonkey") {
 <div id="wrap">
-<nav class="navbar navbar-default" role="navigation">
-    <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">Lunchmonkey</a>
-        </div>
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Lunchmonkey</a>
+            </div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-            </ul>
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-</nav>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Home</a></li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
     <div class="container">
         <div class="page-header">
             <h1>Lunchmonkey
@@ -106,34 +109,18 @@
                             <h4 class="modal-title">{{editLocationPopupTitle}}</h4>
                         </div>
                         <div class="modal-body">
-                            <p>
-                            <table border="0">
-                                <tr>
-                                    <td>
-                                        Name
-                                    </td>
-                                    <td>
-                                        <input ng-model="selectedLocation.name"/>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Food Style
-                                    </td>
-                                    <td>
-                                        <input ng-model="selectedLocation.foodStyle"/>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        URL
-                                    </td>
-                                    <td>
-                                        <input ng-model="selectedLocation.url">
-                                    </td>
-                                </tr>
-                            </table>
-                            </p>
+                            <div class="input-group input-group-sm">
+                                <span class="input-group-addon">name</span>
+                                <input type="text" class="form-control" placeholder="location name" ng-model="selectedLocation.name">
+                            </div>
+                            <div class="input-group input-group-sm">
+                                <span class="input-group-addon">food style</span>
+                                <input type="text" class="form-control" placeholder="food style" ng-model="selectedLocation.foodStyle">
+                            </div>
+                            <div class="input-group input-group-sm">
+                                <span class="input-group-addon">url</span>
+                                <input type="text" class="form-control" placeholder="url to menu or homepage" ng-model="selectedLocation.url">
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -155,7 +142,8 @@
 </div>
 <div id="footer" ng-controller="FeedbackController">
     <div class="container">
-        <button class="btn btn-primary" data-toggle="modal" data-target="#feedbackDialog" ng-click="openFeedbackDialog()">
+        <button class="btn btn-primary" data-toggle="modal" data-target="#feedbackDialog"
+                ng-click="openFeedbackDialog()">
             Feedback
         </button>
     </div>
@@ -170,25 +158,30 @@
                 </div>
                 <div class="modal-body">
                     <p>
-                    <div ng-repeat="feedback in feedbacks" class="panel panel-default">
-                        <div class="panel-heading">{{feedback.username}}</div>
-                        <div class="panel-body">
-                            {{feedback.comment}}
+                    <div id="feedbackContainer">
+                        <div ng-repeat="feedback in feedbacks" class="panel panel-default">
+                            <div class="panel-heading">{{feedback.username}}<span class="pull-right glyphicon glyphicon-remove" ng-click="deleteFeedback(feedback)"></span></div>
+                            <div class="panel-body">
+                                {{feedback.comment}}
+                            </div>
                         </div>
                     </div>
+                    <h5 class="paddingTop">Give Feedback:</h5>
                     <div class="input-group input-group-sm">
-                        <span class="input-group-addon">from</span>
+                        <span class="input-group-addon">name</span>
                         <input type="text" class="form-control" placeholder="Username" ng-model="newFeedback.username">
                     </div>
                     <div class="input-group input-group-sm">
                         <span class="input-group-addon">comment</span>
-                        <input type="text" class="form-control" placeholder="Comment" ng-model="newFeedback.comment" />
+                        <input type="text" class="form-control" placeholder="Comment" ng-model="newFeedback.comment"/>
                     </div>
                     </p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="createFeedback()">Send Feedback</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="createFeedback()">Send
+                        Feedback
+                    </button>
                 </div>
             </div>
             <!-- /.modal-content -->
