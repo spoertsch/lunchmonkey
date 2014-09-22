@@ -7,3 +7,33 @@ div #column3 {
 .dl-horizontal dt {
     width: 200px;
 }
+
+#feedbackDialog {
+    max-height: 90%;
+}
+
+#feedbackContainer {
+    max-height: 270px;
+    overflow: scroll;
+    padding:2px;
+}
+
+.paddingTop {
+    padding-top: 20px;
+}
+
+#footer {
+    height: 60px;
+    padding-top: 10px;
+    width: 100%;
+    background-color: #f5f5f5;
+}
+
+.input-group-addon {
+    width: 120px;
+}
+
+.input-group {
+    width: 100%;
+    margin-bottom: 5px;
+}

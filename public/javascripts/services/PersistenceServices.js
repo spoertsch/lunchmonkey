@@ -36,3 +36,32 @@ persistenceServices.factory('Locations', ['$resource',
     }
 ]);
 
+persistenceServices.factory('Feedbacks', ['$resource',
+    function ($resource) {
+        return {
+            getAll: function () {
+                return $resource(host + '/feedbacks', {}, {
+                    query: {method: 'GET', isArray: true}
+                });
+            },
+            create: function () {
+                return $resource(host + '/feedback', {}, {
+                    execute: {method: 'POST'}
+                });
+            },
+            save: function () {
+                return $resource(host + '/feedback', {}, {
+                    execute: {method: 'PUT'}
+                });
+            },
+            delete: function (id) {
+                return $resource(host + '/feedback/:feedbackId', {}, {
+                    execute: {
+                        method: 'DELETE',
+                        params: {feedbackId: id}
+                    }
+                });
+            }
+        };
+    }
+]);
