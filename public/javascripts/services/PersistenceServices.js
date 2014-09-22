@@ -2,7 +2,7 @@
 
 /* Services */
 
-var host = 'http://localhost:9000';
+var host = 'http://lunchmonkeytest.herokuapp.com';
 
 var persistenceServices = angular.module('persistenceServices', []);
 
