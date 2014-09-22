@@ -1,1 +1,1 @@
-web: target/universal/stage/bin/lunchmonkey -Dhttp.port=$PORT -Dmongodb.uri=$MONGOHQ_URL ${JAVA_OPTS}
+web: target/universal/stage/bin/lunchmonkey -Dhttp.port=$PORT -Dmongodb.uri=$MONGOHQ_URL
