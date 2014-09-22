@@ -26,7 +26,7 @@ object LocationDao {
    * @return The saved location, once saved.
    */
   def save(location: Location): Future[Location] = {
-    Logger.debug("Dao is saving: " + Json.toJson(location).toString())
+    Logger.info("Dao is saving: " + Json.toJson(location).toString())
     collection.save(location).map {
       case ok if ok.ok =>
         // EventDao.publish("location", location)

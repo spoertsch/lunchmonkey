@@ -16,13 +16,13 @@ object Global extends play.api.GlobalSettings {
     for {
       count <- LocationDao.count
     } yield {
-      Logger.debug("Count of locations in application: " + count)
+      Logger.info("Count of locations in application: " + count)
       if (count == 0) {
         Logger.info("Creating " + Location.defaultLocations.size + " default locations, as database is empty");
         for {
           location <- Location.defaultLocations
         } {
-          Logger.debug("About to create location " + location.name)
+          Logger.info("About to create location " + location.name)
           LocationDao.save(location)
         }
       }
