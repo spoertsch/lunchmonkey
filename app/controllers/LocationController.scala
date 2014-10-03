@@ -36,7 +36,7 @@ object LocationController extends Controller {
    * The location form for create location. This is separate from the database location since the form doesn't have an ID.
    */
   case class LocationForm(name: String, foodStyle: String, url: String) {
-    def toLocation: Location = Location(BSONObjectID.generate, name, foodStyle, url)
+    def toLocation: Location = Location(BSONObjectID.generate, name, foodStyle, url, null)
   }
 
   implicit val locationFormFormat = Json.format[LocationForm]

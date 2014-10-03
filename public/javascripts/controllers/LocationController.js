@@ -26,7 +26,7 @@ locationControllers.controller('LocationController', ['$scope', 'Locations', fun
         }
 
         $scope.openCreateLocationDialog = function () {
-            $scope.selectedLocation = {name: "", foodStyle: "", url: ""}
+            $scope.selectedLocation = {name: "", foodStyle: "", url: "", votes: null}
             $scope.editLocationPopupTitle = "Create Location"
             $scope.isCreate = true
         }
@@ -49,6 +49,11 @@ locationControllers.controller('LocationController', ['$scope', 'Locations', fun
         $scope.deleteLocation = function(location){
             Locations.delete(location._id.$oid).execute()
             $scope.locations.splice($.inArray(location, $scope.locations),1);
+        }
+
+        $scope.voteLocation = function(location){
+            location.votes = [{username: "test", positive: true}]
+            Locations.save().execute(location)
         }
     }]
 );
