@@ -47,7 +47,7 @@ object LocationDao {
       .collect[Seq]()
   }
 
-  def findById(id: String): Future[Location] = {
+  def findById(id: String): Future[Option[Location]] = {
     collection.find(Json.obj("_id" -> BSONObjectID(id)))
       .one[Location]
   }

@@ -26,13 +26,6 @@ object LocationController extends Controller {
     }.getOrElse(Future.successful(BadRequest("invalid json " + parse.json)))
   }
 
-  def createVote = Action.async(parse.json) { req =>
-    Json.fromJson[VoteForm](req.body).fold(
-      invalid => Future.successful(BadRequest("Bad vote form")),
-      form => LocationDao.save(form.toLocation).map(_ => Created)
-    )
-  }
-
   def list = Action.async {
     for {
       locations <- LocationDao.findAll()
@@ -45,17 +38,10 @@ object LocationController extends Controller {
    * The location form for create location. This is separate from the database location since the form doesn't have an ID.
    */
   case class LocationForm(name: String, foodStyle: String, url: String) {
-    def toLocation: Location = Location(BSONObjectID.generate, name, foodStyle, url, null)
-  }
-
-  case class VoteForm(locationId: String, username: String, date: Date, positive: Boolean) {
-    def vote: Vote = Vote(username, date, positive)
-    def toLocation: Location = LocationDao.findById(locationId)
-    toLocation.votes += vote
+    def toLocation: Location = Location(BSONObjectID.generate, name, foodStyle, url)
   }
 
   implicit val locationFormFormat = Json.format[LocationForm]
-  implicit val voteFormFormat = Json.format[VoteForm]
 
   /** Action to create a message */
   def createLocation = Action.async(parse.json) { req =>

@@ -14,7 +14,7 @@ import models.User
 object UserController extends Controller {
 
   def init = Action {
-    def uuid = java.util.UUID.randomUUID.toString
+    def uuid : String = java.util.UUID.randomUUID.toString
     def user : User = User(uuid)
     Ok(Json.toJson(user))
   }
