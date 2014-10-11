@@ -1,17 +1,17 @@
-import org.scalatest._
+import org.scalatestplus.play._
 import models.Location
 
-class LocationSpec extends FlatSpec with Matchers {
+class LocationSpec extends PlaySpec {
 
-  "Location" should "return list of locations" in {
-    val locationList = Location.defaultLocations
-    locationList.size should be > (0)
-
-  }
-
-  it should "contain at least one asian restaurant" in {
-    val locationList = Location.defaultLocations
-    locationList.count(_.foodStyle == "asian") should be >= (1)
+  "Location" must {
+    "return list of locations" in {
+      val locationList = Location.defaultLocations
+      locationList.size mustBe  > (0)
+    }
+    "contain at least one asian restaurant" in {
+      val locationList = Location.defaultLocations
+      locationList.count(_.foodStyle.contains("asia")) mustBe >= (1)
+    }
   }
 
 }
