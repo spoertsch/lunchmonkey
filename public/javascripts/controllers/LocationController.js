@@ -2,10 +2,10 @@
 
 var locationControllers = angular.module('locationController', []);
 
-locationControllers.controller('LocationController', ['$scope', 'Locations', 'User', 'Vote' function ($scope, Locations, User, Vote) {
+locationControllers.controller('LocationController', ['$scope', 'Locations', 'User', 'Vote', function ($scope, Locations, User, Vote) {
 
-        $scope.predicate = "name";
-        $scope.reverse = false;
+        $scope.predicate = "name"
+        $scope.reverse = false
         $scope.locations = Locations.getAll().query()
         if (!localStorage.getItem("username")){
             var user = User.init().query(function(){
