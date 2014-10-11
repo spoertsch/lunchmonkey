@@ -6,5 +6,6 @@ deploy:
   api_key:
     secure: WSpNUY3fJ9jzUnXLOWCl/Zk3710xNQklmz83VIol7I6nQDu743qZmB2EW4WE91IGIltf8Qk+8mZ9RYi3hdgdRB7+erz0rWXvZzvbXMed1rZEKc4se2uJb0AeXb2kgL0/AFIrIyT1rG9raHtxxTDK88Je7smYVDAQ9j4ghK5r3Fs=
   app: lunchmonkeytest
+  strategy: git
   on:
     repo: spoertsch/lunchmonkey
