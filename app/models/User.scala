@@ -8,10 +8,10 @@ import java.util.Date
 /**
  * Created by jst on 04.09.14.
  */
-case class Vote(username: String, date: Date, positive: Boolean) {
+case class User(username: String) {
 
 }
 
-object Vote {
-  implicit val voteFormat = Json.format[Vote]
+object User {
+  implicit val userFormat = Json.format[User]
 }

@@ -47,6 +47,11 @@ object LocationDao {
       .collect[Seq]()
   }
 
+  def findById(id: String): Future[Location] = {
+    collection.find(Json.obj("_id" -> BSONObjectID(id)))
+      .one[Location]
+  }
+
   def remove(id: String): Future[reactivemongo.core.commands.LastError] = {
     Logger.debug(s"Removing location: [collection=locations, id=$id]")
     collection.remove(Json.obj("_id" -> BSONObjectID(id)))

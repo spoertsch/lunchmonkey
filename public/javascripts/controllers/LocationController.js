@@ -2,12 +2,16 @@
 
 var locationControllers = angular.module('locationController', []);
 
-locationControllers.controller('LocationController', ['$scope', 'Locations', function ($scope, Locations) {
+locationControllers.controller('LocationController', ['$scope', 'Locations', 'User', 'Vote' function ($scope, Locations, User, Vote) {
 
         $scope.predicate = "name";
         $scope.reverse = false;
         $scope.locations = Locations.getAll().query()
-
+        if (!localStorage.getItem("username")){
+            var user = User.init().query(function(){
+                localStorage.setItem("username", user.username)
+            })
+        }
         var oldLocation = null
 
         $scope.randomButton = function () {
@@ -52,8 +56,8 @@ locationControllers.controller('LocationController', ['$scope', 'Locations', fun
         }
 
         $scope.voteLocation = function(location){
-            location.votes = [{username: "test", positive: true}]
-            Locations.save().execute(location)
+            var vote = {locationId: location._id.$oid, username: localStorage.getItem("username"), date: new Date(), positive: true}
+            Vote.create().execute(vote)
         }
     }]
 );

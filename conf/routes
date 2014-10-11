@@ -14,6 +14,8 @@ DELETE  /location/:locationId       controllers.LocationController.deleteLocatio
 GET     /feedbacks                  controllers.FeedbackController.list
 POST    /feedback                   controllers.FeedbackController.createFeedback
 DELETE  /feedback/:feedbackId       controllers.FeedbackController.deleteFeedback(feedbackId: String)
+GET     /user                       controllers.UserController.init
+POST    /vote                       controllers.LocationController.createVote
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

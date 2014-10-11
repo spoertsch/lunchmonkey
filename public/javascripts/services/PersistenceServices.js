@@ -63,3 +63,27 @@ persistenceServices.factory('Feedbacks', ['$resource',
         };
     }
 ]);
+
+persistenceServices.factory('User', ['$resource',
+    function ($resource) {
+        return {
+            init: function () {
+                return $resource('/user', {}, {
+                    query: {method: 'GET', isArray: false}
+                });
+            }
+        };
+    }
+]);
+
+persistenceServices.factory('Vote', ['$resource',
+    function ($resource) {
+        return {
+            create: function () {
+                return $resource('/vote', {}, {
+                    execute: {method: 'POST'}
+                });
+            }
+        };
+    }
+]);
