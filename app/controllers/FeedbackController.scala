@@ -1,16 +1,18 @@
 package controllers
 
-import models.Feedback
-import scala.concurrent.Future
-import play.api.libs.json._
-import play.api.mvc.{Action, Controller}
-import scala.util.Random
-import services.FeedbackDao
-import reactivemongo.bson.BSONObjectID
-import play.api.libs.concurrent.Execution.Implicits._
 import java.util.Date
 
-object FeedbackController extends Controller {
+import controllers.auth.{UserAuthentication, UserRequest}
+import models.Feedback
+import play.api.libs.concurrent.Execution.Implicits._
+import play.api.libs.json._
+import play.api.mvc.{Action, AnyContent, Controller}
+import reactivemongo.bson.BSONObjectID
+import services.FeedbackDao
+
+import scala.concurrent.Future
+
+object FeedbackController extends Controller with UserAuthentication {
 
   /** Action to save a feedback */
   def saveFeedback = Action.async(parse.json) { req =>
@@ -21,7 +23,7 @@ object FeedbackController extends Controller {
     }.getOrElse(Future.successful(BadRequest("invalid json " + parse.json)))
   }
 
-  def list = Action.async {
+  def list = isAuthenticated(parse.anyContent) { implicit request: UserRequest[AnyContent] =>
     for {
       feedbacks <- FeedbackDao.findAll()
     } yield {

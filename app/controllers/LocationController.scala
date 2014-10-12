@@ -1,14 +1,16 @@
 package controllers
 
 
+import controllers.FeedbackController._
 import models.Location
-import scala.concurrent.Future
+import play.api.libs.concurrent.Execution.Implicits._
 import play.api.libs.json._
 import play.api.mvc.{Action, Controller}
-import scala.util.Random
-import services.LocationDao
 import reactivemongo.bson.BSONObjectID
-import play.api.libs.concurrent.Execution.Implicits._
+import services.LocationDao
+
+import scala.concurrent.Future
+import scala.util.Random
 
 /**
  * Created by jst on 04.09.14.
@@ -42,7 +44,7 @@ object LocationController extends Controller {
   implicit val locationFormFormat = Json.format[LocationForm]
 
   /** Action to create a message */
-  def createLocation = Action.async(parse.json) { req =>
+  def createLocation = isAuthenticated(parse.json) { req =>
     Json.fromJson[LocationForm](req.body).fold(
       invalid => Future.successful(BadRequest("Bad location form")),
       form => LocationDao.save(form.toLocation).map(_ => Created)

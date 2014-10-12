@@ -1,0 +1,29 @@
+@(loginForm: Form[controllers.auth.LoginController.LoginInfo])
+
+@import helper._
+
+@main("Welcome to Lunchmonkey") {
+    <div id="wrap">
+        <div class="container">
+            <div class="page-header">
+                <h1>Lunchmonkey
+                    <small>Meat is meat, learn to eat!</small>
+                </h1>
+            </div>
+        </div>
+    </div>
+
+    <div id="wrap">
+        <div class="container">
+            <div role="form">
+                @form(action = controllers.auth.routes.LoginController.loginConfirm) {
+
+                    @inputText(loginForm("username"))
+                    @inputPassword(loginForm("password"))
+                    <input type="submit" value="Login">
+                }
+            </div>
+
+        </div>
+    </div>
+}
