@@ -1,5 +1,4 @@
 import models.Location
-import models.Location._
 import play.api.libs.json._
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import play.api.Logger

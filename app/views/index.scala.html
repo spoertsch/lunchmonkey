@@ -91,7 +91,8 @@
                             &nbsp;<span class="glyphicon glyphicon-remove" ng-if="location._id"
                                         ng-click="deleteLocation(location)"></span>&nbsp;
                         </dt>
-                        <dd><span class="label label-default">{{location.foodStyle}}</span></dd>
+                        <dd><span class="label label-default" ng-repeat="foodStyle in location.foodStyle"
+                                  style="margin-right:5px;">{{foodStyle}}</span></dd>
                     </dl>
                     <dl class="dl-horizontal" ng-if="filteredLocations.length == 0">
                         <dt>no results found ...</dt>
@@ -111,15 +112,28 @@
                         <div class="modal-body">
                             <div class="input-group input-group-sm">
                                 <span class="input-group-addon">name</span>
-                                <input type="text" class="form-control" placeholder="location name" ng-model="selectedLocation.name">
+                                <input type="text" class="form-control" placeholder="location name"
+                                       ng-model="selectedLocation.name">
                             </div>
                             <div class="input-group input-group-sm">
                                 <span class="input-group-addon">food style</span>
-                                <input type="text" class="form-control" placeholder="food style" ng-model="selectedLocation.foodStyle">
+                                <div style="padding-top:4px;padding-bottom:4px;">
+                                    <span class="label label-default"
+                                          style="cursor: pointer; margin-left: 5px;"
+                                          ng-repeat="foodStyle in selectedLocation.foodStyle"
+                                          ng-click="removeFoodStyle(foodStyle)">{{foodStyle}}</span>
+                                    <span ng-if="selectedLocation.foodStyle.length < 3" class="glyphicon glyphicon-plus"
+                                          style="margin-left: 5px;"
+                                          ng-click="addFoodStyle()"></span>
+                                </div>
+                                <input type="text" class="form-control" ng-if="model.newFoodStyle != null"
+                                       placeholder="food style" ng-keyup="$event.keyCode == 13 && insertFoodStyle()"
+                                       ng-model="model.newFoodStyle" ng-blur="insertFoodStyle()">
                             </div>
                             <div class="input-group input-group-sm">
                                 <span class="input-group-addon">url</span>
-                                <input type="text" class="form-control" placeholder="url to menu or homepage" ng-model="selectedLocation.url">
+                                <input type="text" class="form-control" placeholder="url to menu or homepage"
+                                       ng-model="selectedLocation.url">
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -158,15 +172,19 @@
                 </div>
                 <div class="modal-body">
                     <p>
+
                     <div id="feedbackContainer">
                         <div ng-repeat="feedback in feedbacks" class="panel panel-default">
-                            <div class="panel-heading">{{feedback.username}}<span class="pull-right glyphicon glyphicon-remove" ng-click="deleteFeedback(feedback)"></span></div>
+                            <div class="panel-heading">{{feedback.username}}<span
+                                    class="pull-right glyphicon glyphicon-remove"
+                                    ng-click="deleteFeedback(feedback)"></span></div>
                             <div class="panel-body">
                                 {{feedback.comment}}
                             </div>
                         </div>
                     </div>
                     <h5 class="paddingTop">Give Feedback:</h5>
+
                     <div class="input-group input-group-sm">
                         <span class="input-group-addon">name</span>
                         <input type="text" class="form-control" placeholder="Username" ng-model="newFeedback.username">

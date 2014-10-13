@@ -2,11 +2,15 @@
 
 var locationControllers = angular.module('locationController', []);
 
+
+
 locationControllers.controller('LocationController', ['$scope', 'Locations', function ($scope, Locations) {
 
         $scope.predicate = "name";
         $scope.reverse = false;
         $scope.locations = Locations.getAll().query()
+        $scope.model = {}
+
 
         var oldLocation = null
 
@@ -49,6 +53,24 @@ locationControllers.controller('LocationController', ['$scope', 'Locations', fun
         $scope.deleteLocation = function(location){
             Locations.delete(location._id.$oid).execute()
             $scope.locations.splice($.inArray(location, $scope.locations),1);
+        }
+
+        $scope.addFoodStyle = function(){
+            $scope.model.newFoodStyle = ""
+        }
+
+        $scope.insertFoodStyle = function(){
+            var newFoodStyle = $scope.model.newFoodStyle;
+            var foodStyle = $scope.selectedLocation.foodStyle;
+            if (newFoodStyle && $.inArray(newFoodStyle,foodStyle) == -1) {
+                foodStyle.push(newFoodStyle)
+            }
+            $scope.model.newFoodStyle = null
+        }
+
+        $scope.removeFoodStyle = function(foodStyle){
+            $scope.selectedLocation.foodStyle.splice($.inArray(foodStyle, $scope.selectedLocation.foodStyle),1);
+            $('[data-toggle="tooltip"]').tooltip('hide')
         }
     }]
 );
