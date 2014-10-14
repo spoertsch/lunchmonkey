@@ -45,7 +45,9 @@
                  ng-show="random != null">
                 <a ng-if="random.url" href="{{random.url}}" target="_blank">{{random.name}}</a>
                 <span ng-if="!random.url">{{random.name}}</span>
-                <span class="label label-default">{{random.foodStyle}}</span>
+                <span class="label label-default"
+                      style="margin-left: 5px;"
+                      ng-repeat="foodStyle in random.foodStyle">{{foodStyle}}</span>
             </div>
 
             <div class="panel panel-default" style="margin-top: 20px">
@@ -117,6 +119,7 @@
                             </div>
                             <div class="input-group input-group-sm">
                                 <span class="input-group-addon">food style</span>
+
                                 <div style="padding-top:4px;padding-bottom:4px;">
                                     <span class="label label-default"
                                           style="cursor: pointer; margin-left: 5px;"
