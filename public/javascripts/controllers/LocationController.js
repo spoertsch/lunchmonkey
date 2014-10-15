@@ -30,7 +30,7 @@ locationControllers.controller('LocationController', ['$scope', 'Locations', fun
         }
 
         $scope.openCreateLocationDialog = function () {
-            $scope.selectedLocation = {name: "", foodStyle: "", url: ""}
+            $scope.selectedLocation = {name: "", foodStyle: [], url: ""}
             $scope.editLocationPopupTitle = "Create Location"
             $scope.isCreate = true
         }
